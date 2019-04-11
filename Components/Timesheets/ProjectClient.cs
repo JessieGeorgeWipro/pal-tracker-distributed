@@ -3,6 +3,10 @@ using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Abstractions;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace Timesheets
 {
