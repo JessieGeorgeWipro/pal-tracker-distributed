@@ -1,8 +1,13 @@
 ﻿using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+﻿using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Abstractions;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace Backlog
 {
@@ -10,12 +15,14 @@ namespace Backlog
     {
         private readonly HttpClient _client;
         private readonly ILogger<ProjectClient> _logger;
+        private readonly Func<Task<string>> _accessTokenFn;
         private readonly IDictionary<long, ProjectInfo> _projectCache = new Dictionary<long, ProjectInfo>();
 
-        public ProjectClient(HttpClient client,ILogger<ProjectClient> logger)
+        public ProjectClient(HttpClient client,ILogger<ProjectClient> logger, Func<Task<string>> accessTokenFn)
         {
             _client = client;
             _logger = logger;
+            _accessTokenFn = accessTokenFn;
         }
 
         public async Task<ProjectInfo> Get(long projectId)=>
