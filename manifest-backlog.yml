@@ -5,8 +5,6 @@ applications:
   memory: 256M
   routes:
   - route: backlog-pal-jg.apps.evans.pal.pivotal.io
-  path: Applications/BacklogServer/bin/Release/netcoreapp2.1/publish
-  env:
-    REGISTRATION_SERVER_ENDPOINT: https://registration-pal-jg.apps.evans.pal.pivotal.io/
+  path: Applications/BacklogServer/bin/Release/netcoreapp2.1/publish  
   services:
   - tracker-backlog-database
